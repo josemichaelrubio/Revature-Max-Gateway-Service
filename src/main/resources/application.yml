@@ -1,12 +1,14 @@
 server:
   port: 9990
+#  servlet:
+#    context-path: /test
 spring:
   application:
     name: gateway-service
-  cloud:
-    consul:
-      host: localhost
-      port: 8500
+#  cloud:
+#    consul:
+#      host: localhost
+#      port: 8500
 #    gateway:
 #      routes:
 #        - id: market-service
@@ -20,3 +22,13 @@ spring:
 #            uri: lb://market-service
 #            predicates:
 #              - Path=/shopping-cart/**
+  datasource:
+    url: ${db_url}
+    username: ${db_user}
+    password: ${db_password}
+    driver-class: com.microsoft.sqlserver.jdbc.SQLserverDriver
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
