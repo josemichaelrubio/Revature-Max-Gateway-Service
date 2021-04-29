@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +23,10 @@ public class LoginUserDetails implements UserDetails {
     public LoginUserDetails(UserAuth userAuth) {
         this.username = userAuth.getUsername();
         this.password = userAuth.getPassword();
-//        this.roles = Stream.of(userAuth.getRoles().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        if(userAuth.getRoles()!=null)
+            this.roles = Stream.of(userAuth.getRoles().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        else
+            this.roles = new ArrayList<>();
         this.active = userAuth.isActive();
         this.employeeID = userAuth.getEmployee();
     }

@@ -1,47 +1,32 @@
-package dev.revaturemax.model;
+package dev.revaturemax.dto;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 import java.util.Objects;
 
 @Component
-@Entity
-@Table(name="user_auth")
-public class UserAuth {
+public class UserAuthDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     private String username;
     private String password;
     private String roles;
     private boolean active;
     private int employee;
 
-    public UserAuth() {
+    public UserAuthDTO() {
     }
 
-    public UserAuth(String username, String password) {
+    public UserAuthDTO(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public UserAuth(int id, String username, String password, String roles, boolean active, int employee) {
-        this.id = id;
+    public UserAuthDTO(String username, String password, String roles, boolean active, int employee) {
         this.username = username;
         this.password = password;
         this.roles = roles;
         this.active = active;
         this.employee = employee;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -88,20 +73,19 @@ public class UserAuth {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserAuth userAuth = (UserAuth) o;
-        return id == userAuth.id && active == userAuth.active && employee == userAuth.employee && Objects.equals(username, userAuth.username) && Objects.equals(password, userAuth.password) && Objects.equals(roles, userAuth.roles);
+        UserAuthDTO that = (UserAuthDTO) o;
+        return active == that.active && employee == that.employee && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(roles, that.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, roles, active, employee);
+        return Objects.hash(username, password, roles, active, employee);
     }
 
     @Override
     public String toString() {
-        return "UserAuth{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+        return "UserAuthDTO{" +
+                "username='" + username + '\'' +
                 ", roles='" + roles + '\'' +
                 ", active=" + active +
                 ", employee=" + employee +
