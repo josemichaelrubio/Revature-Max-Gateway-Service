@@ -1,6 +1,5 @@
 package dev.revaturemax.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;

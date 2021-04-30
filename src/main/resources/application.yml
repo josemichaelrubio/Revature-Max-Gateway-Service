@@ -7,19 +7,6 @@ spring:
     consul:
       host: localhost
       port: 8500
-#    gateway:
-#      routes:
-#        - id: market-service
-#            uri: lb://market-service
-#            predicates:
-#              - Path=/items/**
-#            # If our uri is more complicated and we want to strip part of the predicate, we can use a filter.
-#            # filters:
-#            #     - StripPrefix=1
-#        - id: cart-service
-#            uri: lb://market-service
-#            predicates:
-#              - Path=/shopping-cart/**
   datasource:
     driver-class: com.microsoft.sqlserver.jdbc.SQLserverDriver
     url: ${db_url}
