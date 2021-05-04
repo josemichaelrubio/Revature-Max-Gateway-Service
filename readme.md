@@ -1,33 +1,32 @@
-# PROJECT NAME
+# Revature Max: Gateway Service
 
 ## Project Description
 
-Here goes your awesome project description!
+A gateway service for the Microservice implementation of the Revature Max Application. This serves as the single point of access to the application and provides a full Spring Security implementation to authorize access to application endpoints.
 
 ## Technologies Used
 
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+- Java 1.8
+- Gradle
+- Spring Framework
+- Spring Boot
+- Spring Data
+- Spring Web MVC
+- Spring Cloud
+- Spring Security
 
 ## Features
 
-List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
-
-To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+**Implemented Features:**  
+- Integrates with Discovery Service to access all registered microservices.
+- Uses Ribbon built in load balancing to direct traffic if multiple services are found.
+- Implements Spring Security Bcrypt to hash and authenticate passwords.
+- Generates JWTs to track user session on user's device.
 
 ## Getting Started
-   
-(include git clone command)
-(include all environment setup steps)
 
-> Be sure to include BOTH Windows and Unix command  
-> Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
+To get started, you can close the service from GitLab using the following command.
+> `git clone https://gitlab.com/210301-java-azure/project3/revature-max-gateway-service.git`
 
 - All the `code` required to get started
 - Images of what it should look like
@@ -38,8 +37,10 @@ To-do list:
 
 ## Contributors
 
-> Here list the people who have contributed to this project. (ignore this section, if its a solo project)
+- Sebastian Perez
+- Steve Hedstrom
+- Jude Nimesh
+- Derek Martinez
+- Karl Kanitsch
 
-## License
 
-This project uses the following license: [<license_name>](<link>).
