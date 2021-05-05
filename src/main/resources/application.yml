@@ -5,7 +5,7 @@ spring:
     name: gateway-service
   cloud:
     consul:
-      host: localhost
+      host: 13.82.103.66
       port: 8500
   datasource:
     driver-class: com.microsoft.sqlserver.jdbc.SQLserverDriver
