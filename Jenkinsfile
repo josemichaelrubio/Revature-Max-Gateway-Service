@@ -43,9 +43,9 @@ pipeline {
         }
         stage('create container') {
             steps {
-//                 print 'DB_URL.collect { it }=' + DB_URL.collect { it }
-//                 print 'DB_USER.collect { it }=' + DB_USER.collect { it }
-//                 print 'DB_PASS.collect { it }=' + DB_PASS.collect { it }
+                print 'DB_URL.collect { it }=' + DB_URL.collect { it }
+                print 'DB_USER.collect { it }=' + DB_USER.collect { it }
+                print 'DB_PASS.collect { it }=' + DB_PASS.collect { it }
                 sh 'docker run --rm -p ${PORT}:${PORT} -e ${DB_USER} -e ${DB_PASS} -e ${DB_URL} --name ${CONTAINER_NAME} ${IMAGE_TAG}'
             }
         }
