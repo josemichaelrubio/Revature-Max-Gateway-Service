@@ -9,9 +9,9 @@ spring:
       port: 8500
   datasource:
     driver-class: com.microsoft.sqlserver.jdbc.SQLserverDriver
-    url: ${db_url}
-    username: ${db_user}
-    password: ${db_password}
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
     jpa:
       show-sql: true
       generate-ddl: true
@@ -20,3 +20,25 @@ spring:
 
 ---
 
+server:
+  port: 9990
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class: com.microsoft.sqlserver.jdbc.SQLserverDriver
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    jpa:
+      show-sql: true
+      generate-ddl: true
+      hibernate:
+        ddl-auto: update
