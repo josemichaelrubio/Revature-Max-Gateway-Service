@@ -17,7 +17,6 @@ public class UserAuth {
     private String password;
     private String roles;
     private boolean active;
-    private int employee;
 
     public UserAuth() {
     }
@@ -32,7 +31,6 @@ public class UserAuth {
         this.password = password;
         this.roles = roles;
         this.active = active;
-        this.employee = employee;
     }
 
     public int getId() {
@@ -75,25 +73,17 @@ public class UserAuth {
         this.active = active;
     }
 
-    public int getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(int employee) {
-        this.employee = employee;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserAuth userAuth = (UserAuth) o;
-        return id == userAuth.id && active == userAuth.active && employee == userAuth.employee && Objects.equals(username, userAuth.username) && Objects.equals(password, userAuth.password) && Objects.equals(roles, userAuth.roles);
+        return id == userAuth.id && active == userAuth.active && Objects.equals(username, userAuth.username) && Objects.equals(password, userAuth.password) && Objects.equals(roles, userAuth.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, roles, active, employee);
+        return Objects.hash(id, username, password, roles, active);
     }
 
     @Override
@@ -103,7 +93,6 @@ public class UserAuth {
                 ", username='" + username + '\'' +
                 ", roles='" + roles + '\'' +
                 ", active=" + active +
-                ", employee=" + employee +
                 '}';
     }
 }
