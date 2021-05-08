@@ -33,6 +33,7 @@ To get started, you can close the service from GitLab using the following comman
 
 ## Usage
 
+If you wish to run in dev mode (using a localhost Discovery Service), add the following environment variable to your system or your runtime configuration: `SPRING_PROFILES_ACTIVE=dev`
 > Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
 
 ## Contributors
