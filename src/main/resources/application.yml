@@ -27,7 +27,7 @@ spring:
     name: gateway-service-dev
   cloud:
     consul:
-      host: 13.82.103.66
+      host: localhost
       port: 8500
   config:
     activate:
