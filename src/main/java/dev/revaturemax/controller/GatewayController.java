@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping
 public class GatewayController {
 
     private static final String BATCH_SERVICE_URL = "http://batch-service/batches";
