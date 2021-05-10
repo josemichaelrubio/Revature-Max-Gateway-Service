@@ -7,21 +7,9 @@ spring:
     consul:
       host: 13.82.103.66
       port: 8500
-    gateway:
-      routes:
-        - id: batch-service
-          uri: lb://batch-service
-          predicates:
-            - Path=/batches/**
-        - id: curriculum-service
-          uri: lb://curriculum-service
-          predicates:
-            - Path=/curriculum/**
-            - Path=/batch-days/**
-    #        - id: curriculum-service
-    #            uri: lb://curriculum-service
-    #            predicates:
-    #              - Path=/batch-days/**
+  config:
+    activate:
+      on-profile: prod
   datasource:
     driver-class: com.microsoft.sqlserver.jdbc.SQLserverDriver
     url: ${DB_URL}
@@ -46,24 +34,7 @@ spring:
     consul:
       host: localhost
       port: 8500
-    gateway:
-      routes:
-        - id: batch-service
-          uri: lb://batch-service-8083
-          predicates:
-            - Path=/batches/**
-        - id: curriculum-service
-          uri: lb://curriculum-service
-          predicates:
-            - Path=/curriculum/**
-            - Path=/batch-days/**
-      #        - id: curriculum-service
-      #            uri: lb://curriculum-service
-      #            predicates:
-      #              - Path=/batch-days/**
-  config:
-    activate:
-      on-profile: dev
+
   datasource:
     driver-class: com.microsoft.sqlserver.jdbc.SQLserverDriver
     url: ${DB_URL}

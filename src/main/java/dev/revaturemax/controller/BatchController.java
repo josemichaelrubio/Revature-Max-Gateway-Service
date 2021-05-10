@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/batches")
+//@RequestMapping("/batches")
 public class BatchController {
 
     private static final String BATCH_SERVICE_URL = "http://batch-service/batches";
     @Autowired
     RestTemplate restTemplate;
-
-    @GetMapping(value="/{id}")
-    public ResponseEntity<Object> getBatchById(@PathVariable("id") long id){
-        String requestURL = BATCH_SERVICE_URL + "/" + id;
-        return restTemplate.exchange(requestURL,HttpMethod.GET,null,Object.class);
-    }
+//
+//    @GetMapping(value="/{id}")
+//    public ResponseEntity<Object> getBatchById(@PathVariable("id") long id){
+//        String requestURL = BATCH_SERVICE_URL + "/" + id;
+//        return restTemplate.exchange(requestURL,HttpMethod.GET,null,Object.class);
+//    }
 
 
 
