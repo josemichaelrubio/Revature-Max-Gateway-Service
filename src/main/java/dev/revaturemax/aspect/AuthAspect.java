@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,5 @@ public class AuthAspect {
             logger.warn("auth header not present");
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
-
     }
 }
