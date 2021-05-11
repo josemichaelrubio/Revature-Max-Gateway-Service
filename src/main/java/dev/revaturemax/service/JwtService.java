@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -18,9 +19,13 @@ public class JwtService {
 
     private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
+    @Autowired
+    EmployeeService employeeService;
+
     public String generateToken(UserAuth userAuth){
         Map<String,Object> claims = new HashMap<>();
-        return createToken(claims, userAuth.getUsername());
+        String employeeID = String.valueOf(userAuth.getEmployee());
+        return createToken(claims, employeeID);
     }
 
     private String createToken(Map<String,Object> claims, String subject){
@@ -33,7 +38,7 @@ public class JwtService {
     }
 
     public boolean validateToken(String token, UserAuth userDetails){
-        return (extractUsername(token).equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return (extractSubject(token).equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private Claims extractAllClaims(String token){
@@ -45,7 +50,7 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String extractUsername(String token){
+    public String extractSubject(String token){
         return extractClaim(token, Claims::getSubject);
     }
 
