@@ -2,6 +2,7 @@ package dev.revaturemax.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -47,9 +48,9 @@ public class GatewayController {
     }
 
     @PostMapping("/curriculum/{pathString}")
-    public ResponseEntity<Object> curriculumPostController(@PathVariable("pathString") String pathString){
+    public ResponseEntity<Object> curriculumPostController(@PathVariable("pathString") String pathString, @RequestBody RequestEntity<Object> request){
         String requestURL = CURRICULUM_SERVICE_URL + "/" + pathString;
-        return restTemplate.exchange(requestURL, HttpMethod.POST,null,Object.class);
+        return restTemplate.exchange(requestURL, HttpMethod.POST,request,Object.class);
     }
 
     @PutMapping("/curriculum/{pathString}")

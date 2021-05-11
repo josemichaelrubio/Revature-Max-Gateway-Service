@@ -19,7 +19,7 @@ public class AuthController {
     @Autowired
     AuthService authService;
 
-    @GetMapping
+    @GetMapping("/login")
     public ResponseEntity<String> handleLogin(@RequestBody UserAuth userAuth){
         return authService.login(userAuth);
     }
