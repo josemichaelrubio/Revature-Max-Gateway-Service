@@ -38,7 +38,7 @@ public class JwtService {
     }
 
     public boolean validateToken(String token, UserAuth userDetails){
-        return (extractUsername(token).equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return (extractSubject(token).equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private Claims extractAllClaims(String token){
@@ -50,7 +50,7 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String extractUsername(String token){
+    public String extractSubject(String token){
         return extractClaim(token, Claims::getSubject);
     }
 
