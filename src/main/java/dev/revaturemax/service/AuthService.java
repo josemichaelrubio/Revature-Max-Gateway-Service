@@ -3,7 +3,6 @@ package dev.revaturemax.service;
 import dev.revaturemax.exception.UnauthorizedException;
 import dev.revaturemax.model.UserAuth;
 import dev.revaturemax.repository.UserAuthRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.HttpHeaders;
@@ -12,9 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import javax.xml.ws.Response;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +23,6 @@ public class AuthService {
     HashService hashService;
     @Autowired
     JwtService jwtService;
-
     @Autowired
     RestTemplate restTemplate;
 
@@ -41,25 +36,26 @@ public class AuthService {
         String token = jwtService.generateToken(userAuth);
         Long employeeID = Long.parseLong(jwtService.extractSubject(token));
         HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization",token);
+        headers.add("EmployeeID", String.valueOf(userCredentails.getEmployee()));
         List<String> exposeHeaders = new ArrayList<>();
         exposeHeaders.add("Authorization");
         exposeHeaders.add("EmployeeID");
+
         headers.setAccessControlExposeHeaders(exposeHeaders);
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body("");
     }
-    public ResponseEntity<UserAuth> registerUser(String name, String email, String password) {
+    public ResponseEntity<UserAuth> registerUser(String email, String password, String name) {
         //begins building uri for employee call
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(EMPLOYEE_SERVICE_URL);
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(EMPLOYEE_SERVICE_URL_LOCAL);
         uriComponentsBuilder.queryParam("name", name);
         uriComponentsBuilder.queryParam("email", email);
-        uriComponentsBuilder.queryParam("password", password);
         String uri = uriComponentsBuilder.toUriString();
         ResponseEntity<Long> employeeResponse = restTemplate.exchange(uri, HttpMethod.POST, new HttpEntity<Long>(new HttpHeaders()), Long.class);
         Long employeeId = employeeResponse.getBody();
-
+        password = hashService.hashPassword(password);
         UserAuth userAuth = new UserAuth(email, password, "GUEST", false, employeeId);
         userAuth = userAuthRepository.save(userAuth);
         return new ResponseEntity<>(userAuth, HttpStatus.OK);
-
     }
 }

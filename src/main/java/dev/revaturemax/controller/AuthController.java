@@ -17,12 +17,13 @@ public class AuthController {
     @Autowired
     AuthService authService;
 
-    @GetMapping("/login")
-    public ResponseEntity<String> handleLogin(@RequestBody UserAuth userAuth){
-        return authService.login(userAuth);
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<String> handleLogin(@RequestParam("email") String email,
+                                              @RequestParam("password") String password){
+        return authService.login(new UserAuth(email, password));
     }
 
-    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<UserAuth> handleRegister(@RequestParam("name") String name,
                                                @RequestParam("email") String email,
                                                @RequestParam("password") String password){

@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Component
 @Entity
-@Table(name="user-auth")
+@Table(name="user_auth")
 public class UserAuth {
 
     @Id

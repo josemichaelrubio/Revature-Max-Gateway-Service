@@ -24,7 +24,7 @@ public class JwtService {
 
     public String generateToken(UserAuth userAuth){
         Map<String,Object> claims = new HashMap<>();
-        String employeeID = String.valueOf(employeeService.getEmployeeID(userAuth.getUsername()));
+        String employeeID = String.valueOf(userAuth.getEmployee());
         return createToken(claims, employeeID);
     }
 

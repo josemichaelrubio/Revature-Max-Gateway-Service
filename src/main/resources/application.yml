@@ -12,11 +12,11 @@ spring:
     url: jdbc:sqlserver://ashields-revature.database.windows.net:1433;databaseName=curriculumservice
     username: andrew.shields@ashields-revature
     password: in2Space!
-    jpa:
-      show-sql: true
-      generate-ddl: true
-      hibernate:
-        ddl-auto: update
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
 
 ---
 
