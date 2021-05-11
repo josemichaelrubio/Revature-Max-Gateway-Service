@@ -16,7 +16,7 @@ public class Driver {
         SpringApplication.run(Driver.class, args);
     }
 
-    @LoadBalanced
+//    @LoadBalanced
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder){
         return builder.build();
