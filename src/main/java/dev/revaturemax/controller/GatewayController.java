@@ -10,10 +10,10 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping
 public class GatewayController {
 
-    private static final String BATCH_SERVICE_URL = "http://40.76.1.66/batches";
-    private static final String CURRICULUM_SERVICE_URL = "http://40.122.154.60/curriculum";
-    private static final String BATCH_DAYS_SERVICE_URL = "http://40.122.154.60/batch-days";
-    private static final String EMPLOYEES_SERVICE_URL = "http://20.185.67.43/employees";
+    private static final String BATCH_SERVICE_URL = "http://40.76.1.66:8083/batches";
+    private static final String CURRICULUM_SERVICE_URL = "http://40.122.154.60:8085/curriculum";
+    private static final String BATCH_DAYS_SERVICE_URL = "http://40.122.154.60:8085/batch-days";
+    private static final String EMPLOYEES_SERVICE_URL = "http://20.185.67.43:8082/employees";
 
 //    private static final String BATCH_SERVICE_URL = "http://batch-service/batches";
 //    private static final String CURRICULUM_SERVICE_URL = "http://curriculum-service/curriculum";
