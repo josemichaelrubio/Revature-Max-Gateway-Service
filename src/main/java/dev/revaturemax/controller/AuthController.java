@@ -36,8 +36,7 @@ public class AuthController {
     public RedirectView verifyUserAuth(@PathVariable Long employeeId){
         authService.verifyUser(employeeId);
         RedirectView redirectView = new RedirectView();
-        //I have literally have no idea how to get to the frontend login but that's what this is supposed to do.
-        redirectView.setUrl("http://localhost:4200/login");
+        redirectView.setUrl("http://revaturemax.z19.web.core.windows.net/login");
         return redirectView;
     }
 
