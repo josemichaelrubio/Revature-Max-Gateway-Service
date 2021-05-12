@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping
+@CrossOrigin
 public class GatewayController {
 
     private static final String BATCH_SERVICE_URL = "http://40.76.1.66:8083/batches";
