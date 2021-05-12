@@ -9,9 +9,9 @@ spring:
       port: 8500
   datasource:
     driver-class: com.microsoft.sqlserver.jdbc.SQLserverDriver
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASS}
+    url: jdbc:sqlserver://ashields-revature.database.windows.net:1433;databaseName=curriculumservice
+    username: andrew.shields@ashields-revature
+    password: in2Space!
   jpa:
     show-sql: true
     generate-ddl: true
