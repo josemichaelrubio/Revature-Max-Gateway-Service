@@ -1,9 +1,5 @@
 package dev.revaturemax.repository;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-import dev.revaturemax.model.UserAuth;
-import org.junit.After;
-import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserAuthRepositoryTest {

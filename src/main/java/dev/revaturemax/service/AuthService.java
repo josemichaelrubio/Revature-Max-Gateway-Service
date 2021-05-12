@@ -56,7 +56,12 @@ public class AuthService {
         Long employeeId = employeeResponse.getBody();
         password = hashService.hashPassword(password);
         UserAuth userAuth = new UserAuth(email, password, "GUEST", false, employeeId);
-        userAuth = userAuthRepository.save(userAuth);
+        try {
+            userAuth = userAuthRepository.save(userAuth);
+        } catch(RuntimeException e){
+            e.printStackTrace();
+            throw new UnauthorizedException("There is an account already associated with that email");
+        }
         return new ResponseEntity<>(userAuth, HttpStatus.OK);
     }
 
