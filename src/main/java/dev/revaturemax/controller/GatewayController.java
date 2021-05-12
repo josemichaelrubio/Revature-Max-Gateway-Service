@@ -24,34 +24,7 @@ public class GatewayController {
     @Autowired
     RestTemplate restTemplate;
 
-    @GetMapping("/batches")
-    public ResponseEntity<Object> batchGetController(){
-        return restTemplate.exchange(BATCH_SERVICE_URL, HttpMethod.GET,null,Object.class);
-    }
 
-    @GetMapping("/batches/{pathString}")
-    public ResponseEntity<Object> batchGetControllerOneLevel(@PathVariable("pathString") String pathString){
-        String requestURL = BATCH_SERVICE_URL + "/" + pathString;
-        return restTemplate.exchange(requestURL, HttpMethod.GET,null,Object.class);
-    }
-
-    @GetMapping("/batches/{pathString1}/{pathString2}")
-    public ResponseEntity<Object> batchGetControllerTwoLevels(@PathVariable("pathString") String pathString,@PathVariable("pathString2") String pathString2){
-        String requestURL = BATCH_SERVICE_URL + "/" + pathString + "/" + pathString2;
-        return restTemplate.exchange(requestURL, HttpMethod.GET,null,Object.class);
-    }
-
-    @PostMapping("/batches/{pathString}")
-    public ResponseEntity<Object> batchPostController(@PathVariable("pathString") String pathString){
-        String requestURL = BATCH_SERVICE_URL + "/" + pathString;
-        return restTemplate.exchange(requestURL, HttpMethod.POST,null,Object.class);
-    }
-
-    @DeleteMapping("/batches/{pathString}")
-    public ResponseEntity<Object> batchDeleteController(@PathVariable("pathString") String pathString){
-        String requestURL = BATCH_SERVICE_URL + "/" + pathString;
-        return restTemplate.exchange(requestURL, HttpMethod.DELETE,null,Object.class);
-    }
 
     @GetMapping("/curriculum/{pathString}")
     public ResponseEntity<Object> curriculumGetController(@PathVariable("pathString") String pathString){
