@@ -26,8 +26,8 @@ public class AuthService {
     @Autowired
     RestTemplate restTemplate;
 
-    private static final String EMPLOYEE_SERVICE_URL = "http://20.185.67.43:8082/employees";
-    private static final String EMPLOYEE_SERVICE_URL_LOCAL = "http://localhost:8082/employees";
+    private static final String EMPLOYEE_SERVICE_URL = "http://20.185.67.43:8082";
+    private static final String EMPLOYEE_SERVICE_URL_LOCAL = "http://localhost:8082";
 
     public ResponseEntity<String> login(UserAuth userAuth) {
         UserAuth userCredentails = userAuthRepository.findByUsername(userAuth.getUsername());
@@ -47,7 +47,7 @@ public class AuthService {
     }
     public ResponseEntity<UserAuth> registerUser(String email, String password, String name) {
         //begins building uri for employee call
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(EMPLOYEE_SERVICE_URL_LOCAL);
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(EMPLOYEE_SERVICE_URL + "/employees");
         uriComponentsBuilder.queryParam("name", name);
         uriComponentsBuilder.queryParam("email", email);
         String uri = uriComponentsBuilder.toUriString();
@@ -57,5 +57,13 @@ public class AuthService {
         UserAuth userAuth = new UserAuth(email, password, "GUEST", false, employeeId);
         userAuth = userAuthRepository.save(userAuth);
         return new ResponseEntity<>(userAuth, HttpStatus.OK);
+    }
+
+    public void verifyUser(Long employeeId) {
+        UserAuth userAuth = userAuthRepository.findByEmployee(employeeId);
+        userAuth.setRoles("ASSOCIATE");
+        userAuth.setActive(true);
+        userAuthRepository.save(userAuth);
+        restTemplate.exchange(EMPLOYEE_SERVICE_URL + "/verify/" + employeeId, HttpMethod.GET, new HttpEntity<Object>(new HttpHeaders()), Object.class);
     }
 }
