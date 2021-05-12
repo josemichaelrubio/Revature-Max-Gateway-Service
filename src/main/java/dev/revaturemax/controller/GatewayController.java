@@ -24,9 +24,20 @@ public class GatewayController {
     @Autowired
     RestTemplate restTemplate;
 
+    @GetMapping("/batches")
+    public ResponseEntity<Object> batchGetController(){
+        return restTemplate.exchange(BATCH_SERVICE_URL, HttpMethod.GET,null,Object.class);
+    }
+
     @GetMapping("/batches/{pathString}")
-    public ResponseEntity<Object> batchGetController(@PathVariable("pathString") String pathString){
+    public ResponseEntity<Object> batchGetControllerOneLevel(@PathVariable("pathString") String pathString){
         String requestURL = BATCH_SERVICE_URL + "/" + pathString;
+        return restTemplate.exchange(requestURL, HttpMethod.GET,null,Object.class);
+    }
+
+    @GetMapping("/batches/{pathString1}/{pathString2}")
+    public ResponseEntity<Object> batchGetControllerTwoLevels(@PathVariable("pathString") String pathString,@PathVariable("pathString2") String pathString2){
+        String requestURL = BATCH_SERVICE_URL + "/" + pathString + "/" + pathString2;
         return restTemplate.exchange(requestURL, HttpMethod.GET,null,Object.class);
     }
 
