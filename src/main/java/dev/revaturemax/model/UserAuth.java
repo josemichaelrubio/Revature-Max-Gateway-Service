@@ -14,10 +14,12 @@ public class UserAuth {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     //username is email
+    @Column(unique = true)
     private String username;
     private String password;
     private String roles;
     private boolean active;
+    @Column(unique = true)
     private long employee;
 
     public UserAuth() {
