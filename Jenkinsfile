@@ -13,7 +13,7 @@ pipeline {
    stages {
       stage('checkout'){
           steps {
-            git branch: 'basic-routing-Karl', url: 'https://gitlab.com/210301-java-azure/project3/revature-max-gateway-service.git'
+            git branch: 'dev', url: 'https://gitlab.com/210301-java-azure/project3/revature-max-gateway-service.git'
           }
       }
       stage('clean') {
