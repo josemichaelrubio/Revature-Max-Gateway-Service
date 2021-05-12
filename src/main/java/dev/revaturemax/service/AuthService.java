@@ -26,7 +26,8 @@ public class AuthService {
     @Autowired
     RestTemplate restTemplate;
 
-    private static final String EMPLOYEE_SERVICE_URL = "http://20.185.67.43:8082";
+//    private static final String EMPLOYEE_SERVICE_URL = "http://20.185.67.43:8082";
+    private static final String EMPLOYEE_SERVICE_URL = "http://localhost:8082";
     private static final String EMPLOYEE_SERVICE_URL_LOCAL = "http://localhost:8082";
 
     public ResponseEntity<String> login(UserAuth userAuth) {

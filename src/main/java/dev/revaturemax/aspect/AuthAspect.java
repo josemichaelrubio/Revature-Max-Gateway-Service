@@ -35,6 +35,7 @@ public class AuthAspect {
         if(token!=null){
             logger.info("auth token present: " + token);
             UserAuth user = userAuthRepository.findByEmployee(Long.parseLong(jwtService.extractSubject(token)));
+            logger.info("UserAuth: " + user.toString());
             if(jwtService.validateToken(token, user)){
                 logger.info("Token validated");
                 return (ResponseEntity) jp.proceed();
