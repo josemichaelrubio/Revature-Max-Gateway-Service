@@ -37,8 +37,8 @@ public class AuthController {
         RedirectView redirectView = new RedirectView();
         //I have literally have no idea how to get to the frontend login but that's what this is supposed to do.
 //        redirectView.setUrl("http://localhost:9990/login");
-//        redirectView.setUrl("http://localhost:4200/login");
-        redirectView.setUrl("http://20.185.67.43:9990/login");
+        redirectView.setUrl("http://localhost:4200/login");
+//        redirectView.setUrl("http://13.82.103.66:9990/login");
         return redirectView;
     }
 
