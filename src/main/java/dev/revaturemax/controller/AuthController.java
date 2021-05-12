@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @RequestMapping
@@ -28,6 +29,17 @@ public class AuthController {
                                                @RequestParam("email") String email,
                                                @RequestParam("password") String password){
         return authService.registerUser(email, password, name);
+    }
+
+    @GetMapping(value = "/verify/{employeeId}")
+    public RedirectView verifyUserAuth(@PathVariable Long employeeId){
+        authService.verifyUser(employeeId);
+        RedirectView redirectView = new RedirectView();
+        //I have literally have no idea how to get to the frontend login but that's what this is supposed to do.
+//        redirectView.setUrl("http://localhost:9990/login");
+//        redirectView.setUrl("http://localhost:4200/login");
+        redirectView.setUrl("http://20.185.67.43:9990/login");
+        return redirectView;
     }
 
 
