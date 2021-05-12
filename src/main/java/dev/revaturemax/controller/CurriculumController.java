@@ -10,9 +10,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 import java.util.Set;
 
+@RestController
+@RequestMapping("/curriculum")
+@CrossOrigin
 public class CurriculumController {
 
-    private static final String CURRICULUM_SERVICE_URL = "http://localhost/curriculum";
+//    private static final String CURRICULUM_SERVICE_URL = "http://13:82.103.66:9990/curriculum";
+private static final String CURRICULUM_SERVICE_URL = "http://localhost:8081/curriculum";
 
     @Autowired
     RestTemplate restTemplate;
@@ -99,6 +103,5 @@ public class CurriculumController {
 //        else
 //            return ResponseEntity.ok().body(curriculumService.getAllQC());
 //    }
-
 
 }
