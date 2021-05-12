@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/batch-days")
 @CrossOrigin
@@ -30,7 +28,7 @@ public class BatchDayController {
     @PutMapping(consumes = "application/json")
     public ResponseEntity<Object> setBatchDay(@RequestBody Object requestBody){
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(CURRICULUM_SERVICE_URL);
-        RequestEntity<Object> request = new RequestEntity<Object>(requestBody, HttpMethod.PUT,uriComponentsBuilder.build().toUri());
+        RequestEntity<Object> request = new RequestEntity<>(requestBody, HttpMethod.PUT,uriComponentsBuilder.build().toUri());
         return restTemplate.exchange(uriComponentsBuilder.toUriString(),HttpMethod.PUT,request,Object.class);
     }
 
