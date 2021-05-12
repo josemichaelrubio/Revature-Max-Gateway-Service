@@ -20,9 +20,8 @@
 //    private static final String BATCH_SERVICE_URL = "http://batch-service/batches";
 //    private static final String CURRICULUM_SERVICE_URL = "http://curriculum-service/curriculum";
 //    private static final String BATCH_DAYS_SERVICE_URL = "http://curriculum-service/batch-days";
-//    private static final String EMPLOYEES_SERVICE_URL = "http://employee-service/employees";
 //    @Autowired
-//    RestTemplate restTemplate;
+//    RestTemplate restTemplate
 
 
 //
@@ -87,4 +86,4 @@
 //        String requestURL = EMPLOYEES_SERVICE_URL + "/" + pathString;
 //        return restTemplate.exchange(requestURL, HttpMethod.PUT,null,Object.class);
 //    }
-//}
+

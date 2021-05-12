@@ -10,14 +10,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 import java.util.Set;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/curriculum")
+@CrossOrigin
 public class CurriculumController {
 
-    // TODO: make sure to turn this back to the VM address instead of localhost
-    private static final String CURRICULUM_SERVICE_URL = "http://localhost:8081/curriculum";
-
+//    private static final String CURRICULUM_SERVICE_URL = "http://13:82.103.66:9990/curriculum";
+private static final String CURRICULUM_SERVICE_URL = "http://localhost:8081/curriculum";
     @Autowired
     RestTemplate restTemplate;
 
