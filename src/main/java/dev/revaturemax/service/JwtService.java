@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.security.SignatureException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,28 +38,28 @@ public class JwtService {
                 .compact();
     }
 
-    public boolean validateToken(String token, UserAuth userDetails){
-        return (extractSubject(token).equals(userDetails.getUsername()) && !isTokenExpired(token));
+    public boolean validateToken(String token, UserAuth userDetails) throws SignatureException {
+        return (extractSubject(token).equals(String.valueOf(userDetails.getEmployee())) && !isTokenExpired(token));
     }
 
-    private Claims extractAllClaims(String token){
+    private Claims extractAllClaims(String token) throws SignatureException {
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
     }
 
-    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
+    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) throws SignatureException {
         Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
-    public String extractSubject(String token){
+    public String extractSubject(String token) throws SignatureException {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public Date extractExpiration(String token){
+    public Date extractExpiration(String token) throws SignatureException {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    public boolean isTokenExpired(String token){
+    public boolean isTokenExpired(String token) throws SignatureException {
         return extractExpiration(token).before(new Date());
     }
 }

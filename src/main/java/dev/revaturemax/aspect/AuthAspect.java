@@ -33,9 +33,7 @@ public class AuthAspect {
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String token = request.getHeader("Authorization");
         if(token!=null){
-            logger.info("auth token present: " + token);
             UserAuth user = userAuthRepository.findByEmployee(Long.parseLong(jwtService.extractSubject(token)));
-            logger.info("UserAuth: " + user.toString());
             if(jwtService.validateToken(token, user)){
                 logger.info("Token validated");
                 return (ResponseEntity) jp.proceed();

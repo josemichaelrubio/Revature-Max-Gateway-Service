@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.security.SignatureException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +36,12 @@ public class AuthService {
         UserAuth userCredentails = userAuthRepository.findByUsername(userAuth.getUsername());
         if(!hashService.validatePassword(userAuth.getPassword(), userCredentails))
             throw new UnauthorizedException("Invalid e-mail or password entered.");
-        String token = jwtService.generateToken(userAuth);
-        Long employeeID = Long.parseLong(jwtService.extractSubject(token));
+        String token = jwtService.generateToken(userCredentails);
+        try {
+            Long employeeID = Long.parseLong(jwtService.extractSubject(token));
+        } catch(SignatureException se){
+            se.printStackTrace();
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization",token);
         headers.add("EmployeeID", String.valueOf(userCredentails.getEmployee()));
