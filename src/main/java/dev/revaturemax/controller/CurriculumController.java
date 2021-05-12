@@ -15,7 +15,7 @@ import java.util.Set;
 @CrossOrigin
 public class CurriculumController {
 
-//    private static final String CURRICULUM_SERVICE_URL = "http://13:82.103.66:9990/curriculum";
+//    private static final String CURRICULUM_SERVICE_URL = "http://40.122.154.60:8085/curriculum";
 private static final String CURRICULUM_SERVICE_URL = "http://localhost:8081/curriculum";
 
     @Autowired
