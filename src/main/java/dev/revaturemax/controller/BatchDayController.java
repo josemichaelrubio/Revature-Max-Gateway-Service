@@ -13,8 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @CrossOrigin
 public class BatchDayController {
 
-//        private static final String CURRICULUM_SERVICE_URL = "http://40.122.154.60:8085/batch-days";
-    private static final String CURRICULUM_SERVICE_URL = "http://localhost:8081/batch-days";
+    private static final String CURRICULUM_SERVICE_URL = "http://40.122.154.60:8085/batch-days";
 
     @Autowired
     RestTemplate restTemplate;
