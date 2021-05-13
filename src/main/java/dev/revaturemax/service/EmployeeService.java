@@ -51,7 +51,7 @@ public class EmployeeService {
     }
 
     public ResponseEntity<Object> setQuizScore(long employeeId, long quizId, Object quizScore) {
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(EMPLOYEE_SERVICE_URL + "/" + employeeId + "/" + quizId);
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(EMPLOYEE_SERVICE_URL + "/" + employeeId + "/quizzes/" + quizId);
         RequestEntity<Object> requestEntity = new RequestEntity<Object>(quizScore, HttpMethod.PUT, uriComponentsBuilder.build().toUri());
         String uri = uriComponentsBuilder.toUriString();
         return restTemplate.exchange(uri, HttpMethod.PUT,requestEntity,Object.class);
