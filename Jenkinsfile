@@ -8,11 +8,12 @@ pipeline {
         DB_URL=credentials('DB_URL')
         DB_USER=credentials('DB_USER')
         DB_PASS=credentials('DB_PASS')
+        SPRING_PROD=credentials('SPRING_PROD')
     }
    stages {
       stage('checkout'){
           steps {
-            git branch: 'master', url: 'https://gitlab.com/210301-java-azure/project3/revature-max-gateway-service.git'
+            git branch: 'dev', url: 'https://gitlab.com/210301-java-azure/project3/revature-max-gateway-service.git'
           }
       }
       stage('clean') {
@@ -46,7 +47,7 @@ pipeline {
                 print 'DB_URL.collect { it }=' + DB_URL.collect { it }
                 print 'DB_USER.collect { it }=' + DB_USER.collect { it }
                 print 'DB_PASS.collect { it }=' + DB_PASS.collect { it }
-                sh 'docker run -d --rm --network host -p ${PORT}:${PORT} -e DB_USER=${DB_USER} -e DB_PASS=${DB_PASS} -e DB_URL=${DB_URL} --name ${CONTAINER_NAME} ${IMAGE_TAG}'
+                sh 'docker run -d --rm --net=host -p ${PORT}:${PORT} -e DB_USER=${DB_USER} -e DB_PASS=${DB_PASS} -e DB_URL=${DB_URL} -e ${SPRING_PROD} --name ${CONTAINER_NAME} ${IMAGE_TAG}'
             }
         }
     }
